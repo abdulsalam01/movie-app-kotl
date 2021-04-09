@@ -14,5 +14,6 @@ data class Review(val author: String,
                              val rating: Float) {}
 
     data class Response(val id: Int, val page: Int,
+                        val total_pages: Int,
                         @SerializedName("results") val data: List<Review>)
 }

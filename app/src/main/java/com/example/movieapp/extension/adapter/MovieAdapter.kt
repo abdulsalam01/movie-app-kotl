@@ -52,10 +52,14 @@ class MovieAdapter(private val movieList: List<Movie>,
 
         @SuppressLint("SetTextI18n")
         fun bind(item: Movie) {
+            var date = "-"
+            if (item.release_date != null)
+                date = item.release_date.toString()
+
             title.text = item.title
             overview.text = item.overview
             rating.text = "Rating: ${item.vote_average}"
-            release.text = item.release_date.toString()
+            release.text = date
         }
     }
 }

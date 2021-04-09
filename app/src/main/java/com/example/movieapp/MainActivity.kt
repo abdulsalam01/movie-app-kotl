@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.movieapp.core.constant.API
 import com.example.movieapp.core.constant.Service
+import com.example.movieapp.core.helper.BaseActivity
 import com.example.movieapp.extension.adapter.GenreAdapter
 import com.example.movieapp.extension.adapter.MovieAdapter
 import com.example.movieapp.extension.singleton.ServiceManager
@@ -20,7 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), BaseActivity {
 
     private lateinit var adapterGenre: GenreAdapter
     private lateinit var genreList: List<Genre>
@@ -31,8 +32,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        this.rvList = findViewById(R.id.rv_list)
-        this.service = ServiceManager.getInstance()
+        initView()
 
         this.rvList.layoutManager = LinearLayoutManager(this)
         this.rvList.addItemDecoration(
@@ -43,6 +43,8 @@ class MainActivity : AppCompatActivity() {
 
         loadGenre()
     }
+
+
 
     private fun loadGenre() {
         this.service.getListGenres(API.API_KEY).enqueue(object : Callback<Genre.Response>,
@@ -68,9 +70,13 @@ class MainActivity : AppCompatActivity() {
                 i.putExtra("id_genre", data.id)
 
                 startActivity(i)
-                // finish()
             }
 
         })
+    }
+
+    override fun initView() {
+        this.rvList = findViewById(R.id.rv_list)
+        this.service = ServiceManager.getInstance()
     }
 }

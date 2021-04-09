@@ -21,6 +21,7 @@ interface Service {
 
     @GET(API.REVIEW_LIST)
     fun getReviewList(@Path("movie_id") movie_id: Int,
+                      @Query("page") page: Int?,
                       @Query("api_key") api_key: String): Call<Review.Response>
 
     @GET(API.VIDEO_LIST)
