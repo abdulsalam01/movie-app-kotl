@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+    <string name="genre">Browse by Genre</string>
+    <string name="movie">Browse by Movie</string>
+    <string name="user_review">User Review</string>
+    <string name="open_youtube">Open Youtube</string>
+</resources>
